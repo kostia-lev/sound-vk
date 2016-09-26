@@ -9,12 +9,16 @@ export function auth(logged) {
     return {
         type: 'AUTH',
         state: {
-            vote: {
-                pair: ['Sunshine', '28 Days Later', 'Trainspotting'],
-                tally: ['Sunshine', 2],
                 authenticated: logged,
-                winner: 'winner'
-            }
+        }
+    }
+}
+export function receiveFriendsGroups(friends, groups) {
+    return {
+        type: 'SET_STATE',
+        state: {
+                friends: friends,
+                groups: groups
         }
     }
 }

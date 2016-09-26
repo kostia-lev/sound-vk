@@ -11,11 +11,8 @@ describe('reducer', () => {
     const action = {
         type: 'SET_STATE',
         state: Map({
-            vote: Map({
                 pair: List.of('Trainspotting', '28 Days Later'),
-                tally: Map({Trainspotting: 1})
-            })
-        })
+                tally: Map({Trainspotting: 1})})
     };
     const nextState = reducer(initialState, action);
 

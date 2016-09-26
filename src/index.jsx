@@ -14,12 +14,10 @@ const store = createStore(reducer);
 store.dispatch({
     type: 'SET_STATE',
     state: {
-        vote: {
-            pair: ['Sunshine', '28 Days Later', 'Trainspotting'],
-            tally: ['Sunshine', 2],
+            pair: [{title:'Sunshine'}, {title:'28 Days Later'}, {title:'Trainspotting'}],
             authenticated: false,
-            winner: 'winner'
-        }
+            friends: [],
+            groups: []
     }
 });
 

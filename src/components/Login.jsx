@@ -10,6 +10,7 @@ export const Login = React.createClass({
         var self=this;
         if(!this.props.authenticated){
             VK.Auth.login(function(data){
+                console.log('logged');
                 self.props.auth(true);
             }, (VK.access.FRIENDS | VK.access.AUDIO | VK.access.GROUPS));
         }else{
@@ -36,8 +37,8 @@ export const Login = React.createClass({
 
 function mapStateToProps(state) {
     return {
-        pair: state.getIn(['vote', 'pair']),
-        authenticated: state.getIn(['vote', 'authenticated']),
+        pair: state.get('pair'),
+        authenticated: state.get('authenticated')
     };
 }
 
