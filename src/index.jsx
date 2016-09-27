@@ -17,7 +17,10 @@ store.dispatch({
             pair: [{title:'Sunshine'}, {title:'28 Days Later'}, {title:'Trainspotting'}],
             authenticated: false,
             friends: [],
-            groups: []
+            groups: [],
+            chosenFriendId: -1,
+            chosenGroupId: -1,
+            playlist: []
     }
 });
 
