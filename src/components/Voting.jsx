@@ -41,6 +41,12 @@ export const Voting = React.createClass({
         this.props.setState({chosenGroupId: e.target.value, chosenFriendId: -1});
         this.getAudios('-' + e.target.value);
     },
+    playSong(url){
+        var audio = this.refs.audio;
+        //this.refs.audio.src = url;
+        audio.load();
+        audio.play();
+    },
     render: function() {
         return <div className="appcontainer">
                     <div>
@@ -67,7 +73,7 @@ export const Voting = React.createClass({
                     <div className="playList">
                         <div className="songContainer">
                             {this.props.playlist.map((obj, index) =>
-                                (index==0)? '':<SongContainer key={obj.get('aid')} url={obj.get('url')}
+                                (index==0)? '':<SongContainer changeSong={this.playSong} key={obj.get('aid')} url={obj.get('url')}
                                                      entry={obj.get('artist') + ' ' + obj.get('title')}>
                                                     {obj.get('artist') + ' ' + obj.get('title')}
                                                 </SongContainer>

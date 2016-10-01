@@ -5,9 +5,7 @@ import {connect} from 'react-redux';
 export const Song = React.createClass({
     playSong: function(e){
         this.props.setState({chosenSongId: this.props.key, chosenSongMp3: this.props.url});
-        var audio = this.refs.audio;
-        audio.load(); //call this to just preload the audio without playing
-        audio.play(); //call this to play the song right away
+        this.props.changeSong(this.props.url);
     },
     render: function() {
         return <div className="songContainer">
