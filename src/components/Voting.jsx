@@ -1,5 +1,5 @@
 import React from 'react';
-import Song from './Song';
+import {SongContainer} from './Song';
 import * as actionCreators from '../action_creators';
 import {connect} from 'react-redux';
 
@@ -67,15 +67,23 @@ export const Voting = React.createClass({
                     <div className="playList">
                         <div className="songContainer">
                             {this.props.playlist.map((obj, index) =>
-                                (index==0)? '':<Song key={obj.get('aid')} url={obj.get('url')}
+                                (index==0)? '':<SongContainer key={obj.get('aid')} url={obj.get('url')}
                                                      entry={obj.get('artist') + ' ' + obj.get('title')}>
                                                     {obj.get('artist') + ' ' + obj.get('title')}
-                                                </Song>
+                                                </SongContainer>
                             )}
                         </div>
                     </div>
 
-                    <div className="player"></div>
+                    <div className="player">
+
+                        <audio ref="audio" controls>
+                            <source src={this.props.chosenSongMp3} type="audio/mpeg"/>
+                                    Your browser does not support the audio element.
+                        </audio>
+
+
+                    </div>
               </div>;
     }
 });
@@ -88,7 +96,9 @@ function mapStateToProps(state) {
         groups: state.get('groups'),
         chosenFriendId: state.get('chosenFriendId'),
         chosenGroupId: state.get('chosenGroupId'),
-        playlist: state.get('playlist')
+        playlist: state.get('playlist'),
+        chosenSongId: state.get('chosenSongId'),
+        chosenSongMp3: state.get('chosenSongMp3')
     };
 }
 

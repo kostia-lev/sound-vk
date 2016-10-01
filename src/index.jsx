@@ -20,7 +20,9 @@ store.dispatch({
             groups: [],
             chosenFriendId: -1,
             chosenGroupId: -1,
-            playlist: []
+            playlist: [],
+            chosenSongId: -1,
+            chosenSongMp3: '#'
     }
 });
 
