@@ -2,3 +2,12 @@
     float: left;
     margin: 5px;
 }
+
+.player{
+    position: fixed;
+    bottom: 0;
+}
+
+.songContainer.active button {
+     background: lightblue;
+ }

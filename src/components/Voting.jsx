@@ -71,12 +71,10 @@ export const Voting = React.createClass({
                     </div>
 
                     <div className="playList">
-                        <div className="songContainer">
+                        <div className="playlistContainer">
                             {this.props.playlist.map((obj, index) =>
-                                (index==0)? '':<SongContainer changeSong={this.playSong} key={obj.get('aid')} url={obj.get('url')}
-                                                     entry={obj.get('artist') + ' ' + obj.get('title')}>
-                                                    {obj.get('artist') + ' ' + obj.get('title')}
-                                                </SongContainer>
+                                (index==0)? '':<SongContainer changeSong={this.playSong} key={obj.get('aid')} url={obj.get('url')} aid={'-' + obj.get('aid') + '-'}
+                                                     entry={obj.get('artist') + ': ' + obj.get('title') }/>
                             )}
                         </div>
                     </div>
