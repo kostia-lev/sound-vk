@@ -85,7 +85,7 @@ export const Voting = React.createClass({
                         <div className="playlistContainer">
                             {this.props.playlist.map((obj, index) =>
                                 (index==0)? '':<SongContainer index={String(index)} changeSong={this.playSong} key={obj.get('aid')}
-                                                              url={obj.get('url')} aid={'-' + obj.get('aid') + '-'}
+                                                              url={obj.get('url')} aid={obj.get('aid')}
                                                      entry={obj.get('artist') + ': ' + obj.get('title') }/>
                             )}
                         </div>
