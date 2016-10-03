@@ -22,7 +22,8 @@ store.dispatch({
             chosenGroupId: -1,
             playlist: [],
             chosenSongId: -1,
-            chosenSongMp3: '#'
+            chosenSongMp3: '#',
+            chosenSongIndex: -1
     }
 });
 

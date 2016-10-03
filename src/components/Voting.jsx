@@ -5,7 +5,15 @@ import {connect} from 'react-redux';
 
 
 export const Voting = React.createClass({
+    songEnded: function(e){
+        console.log(parseInt(this.props.chosenSongIndex)+1);
+        //play next song in playlist array
+        var nextSongObj = this.props.playlist.get(parseInt(this.props.chosenSongIndex)+1);
+        this.props.setState({chosenSongId: nextSongObj.get('aid'), chosenSongMp3: nextSongObj.get('url'), chosenSongIndex: (parseInt(this.props.chosenSongIndex)+1)});
+        this.playSong(nextSongObj.get('url'));
+    },
     componentDidMount: function() {
+        $(this.refs.audio).on('ended', this.songEnded);
         var self = this;
         var friends = [];
         var groups = [];
@@ -20,6 +28,9 @@ export const Voting = React.createClass({
                 self.props.receiveFriendsGroups(friends, groups);
             });
         });
+    },
+    componentWillUnmount: function(){
+        $(this.refs.audio).unbind('audio');
     },
     handleFriendsChange(e){
         this.props.setState({chosenFriendId: e.target.value, chosenGroupId:-1});
@@ -73,7 +84,8 @@ export const Voting = React.createClass({
                     <div className="playList">
                         <div className="playlistContainer">
                             {this.props.playlist.map((obj, index) =>
-                                (index==0)? '':<SongContainer changeSong={this.playSong} key={obj.get('aid')} url={obj.get('url')} aid={'-' + obj.get('aid') + '-'}
+                                (index==0)? '':<SongContainer index={String(index)} changeSong={this.playSong} key={obj.get('aid')}
+                                                              url={obj.get('url')} aid={'-' + obj.get('aid') + '-'}
                                                      entry={obj.get('artist') + ': ' + obj.get('title') }/>
                             )}
                         </div>
@@ -102,7 +114,8 @@ function mapStateToProps(state) {
         chosenGroupId: state.get('chosenGroupId'),
         playlist: state.get('playlist'),
         chosenSongId: state.get('chosenSongId'),
-        chosenSongMp3: state.get('chosenSongMp3')
+        chosenSongMp3: state.get('chosenSongMp3'),
+        chosenSongIndex: state.get('chosenSongIndex')
     };
 }
 

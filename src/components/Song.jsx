@@ -4,11 +4,8 @@ import {connect} from 'react-redux';
 
 export const Song = React.createClass({
     playSong: function(e){
-        this.props.setState({chosenSongId: this.props.aid, chosenSongMp3: this.props.url});
+        this.props.setState({chosenSongId: this.props.aid, chosenSongMp3: this.props.url, chosenSongIndex: this.props.index});
         this.props.changeSong(this.props.url);
-        //not the state is old, so we cannot use props from here
-        //console.log(this.props.chosenSongMp3);
-        //console.log(this.props.chosenSongId);
     },
     render: function() {
         return <div className={ (typeof this.props.aid != 'undefined' && typeof this.props.chosenSongId != 'undefined' &&
@@ -23,7 +20,8 @@ export const Song = React.createClass({
 function mapStateToProps(state) {
     return {
         chosenSongId: state.get('chosenSongId'),
-        chosenSongMp3: state.get('chosenSongMp3')
+        chosenSongMp3: state.get('chosenSongMp3'),
+        chosenSongIndex: state.get('chosenSongIndex')
     };
 }
 

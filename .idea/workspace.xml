@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="347179bb-0e8e-4664-a8e5-bf6e9bc74cb9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="$PROJECT_DIR$/dist/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Song.jsx" afterPath="$PROJECT_DIR$/src/components/Song.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Voting.jsx" afterPath="$PROJECT_DIR$/src/components/Voting.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.jsx" afterPath="$PROJECT_DIR$/src/index.jsx" />
     </list>
     <ignored path="sound-vk.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +30,8 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="24" selection-end-column="30" />
+            <state relative-caret-position="225">
+              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -79,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Voting.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Voting.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Voting.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+            <state relative-caret-position="120">
+              <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -91,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Song.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Song.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Song.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="29" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="29" />
+              <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -106,8 +108,8 @@
       <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            <state relative-caret-position="75">
+              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -126,8 +128,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="60">
+              <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -156,16 +158,16 @@
         <option value="$PROJECT_DIR$/src/components/reducer.js" />
         <option value="$PROJECT_DIR$/test/components/reducer_spec.js" />
         <option value="$PROJECT_DIR$/test/components/Voting_spec.jsx" />
-        <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/src/reducer.js" />
         <option value="$PROJECT_DIR$/src/components/App.jsx" />
         <option value="$PROJECT_DIR$/src/action_creators.js" />
         <option value="$PROJECT_DIR$/test/reducer_spec.js" />
         <option value="$PROJECT_DIR$/src/components/Login.jsx" />
         <option value="$PROJECT_DIR$/dist/css/index.css" />
+        <option value="$PROJECT_DIR$/dist/index.html" />
         <option value="$PROJECT_DIR$/src/index.jsx" />
-        <option value="$PROJECT_DIR$/src/components/Song.jsx" />
         <option value="$PROJECT_DIR$/src/components/Voting.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Song.jsx" />
       </list>
     </option>
   </component>
@@ -361,12 +363,12 @@
       <updated>1474334703597</updated>
       <workItem from="1474334704766" duration="2367000" />
       <workItem from="1474628924707" duration="52425000" />
-      <workItem from="1475331292127" duration="2580000" />
+      <workItem from="1475331292127" duration="11997000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57372000" />
+    <option name="totallyTimeSpent" value="66789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="838" extended-state="6" />
@@ -658,14 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Login.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -700,24 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="24" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/App.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -726,10 +702,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Song.jsx">
+    <entry file="file://$PROJECT_DIR$/dist/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="29" />
+        <state relative-caret-position="75">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -738,8 +730,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Voting.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+        <state relative-caret-position="120">
+          <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Song.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
