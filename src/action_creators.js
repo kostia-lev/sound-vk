@@ -5,11 +5,12 @@ export function setState(state) {
     };
 }
 
-export function auth(logged) {
+export function auth(logged, user) {
     return {
         type: 'AUTH',
         state: {
                 authenticated: logged,
+                loggedInUser: user
         }
     }
 }

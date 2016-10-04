@@ -11,7 +11,7 @@ export const Login = React.createClass({
         if(!this.props.authenticated){
             VK.Auth.login(function(data){
                 console.log('logged');
-                self.props.auth(true);
+                self.props.auth(true, data.session.user);
             }, (VK.access.FRIENDS | VK.access.AUDIO | VK.access.GROUPS));
         }else{
             VK.Auth.logout(function(){

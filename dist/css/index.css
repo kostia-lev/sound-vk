@@ -6,6 +6,11 @@
 .player{
     position: fixed;
     bottom: 0;
+    background: white;
+}
+
+span.nowPlaying, span.nowPlayingPrefix {
+    vertical-align: 10px;
 }
 
 .songContainer.active button {

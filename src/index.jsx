@@ -23,7 +23,9 @@ store.dispatch({
             playlist: [],
             chosenSongId: -1,
             chosenSongMp3: '#',
-            chosenSongIndex: -1
+            chosenSongIndex: -1,
+            chosenSongName: '',
+            loggedInUser: null
     }
 });
 

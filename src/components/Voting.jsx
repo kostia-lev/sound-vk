@@ -9,7 +9,10 @@ export const Voting = React.createClass({
         console.log(parseInt(this.props.chosenSongIndex)+1);
         //play next song in playlist array
         var nextSongObj = this.props.playlist.get(parseInt(this.props.chosenSongIndex)+1);
-        this.props.setState({chosenSongId: nextSongObj.get('aid'), chosenSongMp3: nextSongObj.get('url'), chosenSongIndex: (parseInt(this.props.chosenSongIndex)+1)});
+        this.props.setState({chosenSongId: nextSongObj.get('aid'), chosenSongMp3: nextSongObj.get('url'),
+            chosenSongIndex: (parseInt(this.props.chosenSongIndex)+1),
+            chosenSongName: (nextSongObj.get('artist') + ': ' + nextSongObj.get('title'))
+        });
         this.playSong(nextSongObj.get('url'));
     },
     componentDidMount: function() {
@@ -33,8 +36,13 @@ export const Voting = React.createClass({
         $(this.refs.audio).unbind('audio');
     },
     handleFriendsChange(e){
+
         this.props.setState({chosenFriendId: e.target.value, chosenGroupId:-1});
-        this.getAudios(e.target.value);
+        if(e.target.value != -1){
+            this.getAudios(e.target.value);
+        }else{
+            this.props.setState({playlist: []});
+        }
     },
     getAudios(owner_id){
         var self = this;
@@ -50,7 +58,11 @@ export const Voting = React.createClass({
     },
     handleGroupsChange(e){
         this.props.setState({chosenGroupId: e.target.value, chosenFriendId: -1});
-        this.getAudios('-' + e.target.value);
+        if(e.target.value != -1){
+            this.getAudios('-' + e.target.value);
+        }else{
+            this.props.setState({playlist: []});
+        }
     },
     playSong(url){
         var audio = this.refs.audio;
@@ -60,10 +72,15 @@ export const Voting = React.createClass({
     },
     render: function() {
         return <div className="appcontainer">
+                    <div>Привет, {this.props.loggedInUser.get('first_name')+' '+this.props.loggedInUser.get('last_name')}!</div>
                     <div>
                         <select ref="friendsSelect" onChange={this.handleFriendsChange} name="friends">
-                                {this.props.friends.map((obj, index) =>
+                                <option value="-1">-</option>
+                                <option key={this.props.loggedInUser.get('id')} value={this.props.loggedInUser.get('id')} >
+                                    {this.props.loggedInUser.get('first_name')+' '+this.props.loggedInUser.get('last_name')}
+                                </option>
 
+                                {this.props.friends.map((obj, index) =>
                                     <option key={obj.get('user_id')} value={obj.get('user_id')}>
                                         {obj.get('first_name')+' '+obj.get('last_name')}
                                         </option>
@@ -73,6 +90,7 @@ export const Voting = React.createClass({
 
                     <div>
                         <select ref="groupsSelect" onChange={this.handleGroupsChange} name="groups">
+                            <option value='-1'>-</option>
                             {this.props.groups.map((obj, index) =>
                                 (index==0)? '':<option key={obj.get('gid')} value={obj.get('gid')}>
                                     {obj.get('name')}
@@ -97,6 +115,8 @@ export const Voting = React.createClass({
                             <source src={this.props.chosenSongMp3} type="audio/mpeg"/>
                                     Your browser does not support the audio element.
                         </audio>
+                        <span className="nowPlayingPrefix">Now playing: </span>
+                        <span className="nowPlaying">{this.props.chosenSongName}</span>
 
 
                     </div>
@@ -108,6 +128,7 @@ function mapStateToProps(state) {
     return {
         pair: state.get('pair'),
         authenticated: state.get('authenticated'),
+        loggedInUser: state.get('loggedInUser'),
         friends: state.get('friends'),
         groups: state.get('groups'),
         chosenFriendId: state.get('chosenFriendId'),
@@ -115,7 +136,8 @@ function mapStateToProps(state) {
         playlist: state.get('playlist'),
         chosenSongId: state.get('chosenSongId'),
         chosenSongMp3: state.get('chosenSongMp3'),
-        chosenSongIndex: state.get('chosenSongIndex')
+        chosenSongIndex: state.get('chosenSongIndex'),
+        chosenSongName: state.get('chosenSongName')
     };
 }
 
