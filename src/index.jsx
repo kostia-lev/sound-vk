@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {VotingContainer} from './components/Voting';
 import {LoginContainer} from './components/Login';
-import {Router, Route, hashHistory} from 'react-router';
+import {Router, Route, hashHistory, browserHistory} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer'
@@ -36,7 +36,7 @@ const routes = <Route component={LoginContainer}>
 
 ReactDOM.render(
     <Provider store={store}>
-    <Router history={hashHistory}>{routes}</Router>
+    <Router history={browserHistory}>{routes}</Router>
     </Provider>,
     document.getElementById('app')
 );
