@@ -12,7 +12,7 @@ export const Song = React.createClass({
         return <div className={ (typeof this.props.aid != 'undefined' && typeof this.props.chosenSongId != 'undefined' &&
         this.props.aid == this.props.chosenSongId)? ' songContainer active':'songContainer'}>
                         <button onClick={this.playSong} className="song">
-                            <h1>{this.props.entry + this.props.aid}</h1>
+                            <h1>{this.props.entry}</h1>
                         </button>
                 </div>;
     }

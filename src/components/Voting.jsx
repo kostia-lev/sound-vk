@@ -36,8 +36,8 @@ export const Voting = React.createClass({
         $(this.refs.audio).unbind('audio');
     },
     handleFriendsChange(e){
-
         this.props.setState({chosenFriendId: e.target.value, chosenGroupId:-1});
+        this.refs.groupsSelect.value = '-1';
         if(e.target.value != -1){
             this.getAudios(e.target.value);
         }else{
@@ -49,7 +49,6 @@ export const Voting = React.createClass({
         VK.Api.call('audio.get', {owner_id: owner_id}, function(r){
             if(r.response){
                 var audios = r.response;
-                console.log(audios);
                 self.props.setState({playlist: audios});
             }else{
                 console.log(r);
@@ -58,6 +57,7 @@ export const Voting = React.createClass({
     },
     handleGroupsChange(e){
         this.props.setState({chosenGroupId: e.target.value, chosenFriendId: -1});
+        this.refs.friendsSelect.value = '-1';
         if(e.target.value != -1){
             this.getAudios('-' + e.target.value);
         }else{
