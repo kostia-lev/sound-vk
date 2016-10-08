@@ -25,7 +25,8 @@ store.dispatch({
             chosenSongMp3: '#',
             chosenSongIndex: -1,
             chosenSongName: '',
-            loggedInUser: null
+            loggedInUser: null,
+            autoPlay: false
     }
 });
 
