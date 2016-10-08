@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {VotingContainer} from './components/Voting';
-import {LoginContainer} from './components/Login';
 import {Router, Route, hashHistory, browserHistory} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
@@ -31,13 +30,11 @@ store.dispatch({
 });
 
 
-const routes = <Route component={LoginContainer}>
-                        <Route path="/" component={VotingContainer} />
-                </Route>;
-
 ReactDOM.render(
     <Provider store={store}>
-    <Router history={browserHistory}>{routes}</Router>
+    <Router history={hashHistory}>
+        <Route path="/" component={VotingContainer} />
+    </Router>
     </Provider>,
     document.getElementById('app')
 );
