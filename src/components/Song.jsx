@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 export const Song = React.createClass({
     playSong: function(e){
         this.props.setState({chosenSongId: this.props.aid, chosenSongMp3: this.props.url,
-            chosenSongIndex: this.props.index, chosenSongName: this.props.entry});
+            chosenSongIndex: this.props.index, chosenSongName: this.props.entry, chosenSongObj: this.props.songObj});
         this.props.changeSong(this.props.url);
     },
     render: function() {
@@ -57,6 +57,7 @@ function mapStateToProps(state) {
         chosenSongMp3: state.get('chosenSongMp3'),
         chosenSongIndex: state.get('chosenSongIndex'),
         chosenSongName: state.get('chosenSongName'),
+        chosenSongObj: state.get('chosenSongObj'),
     };
 }
 

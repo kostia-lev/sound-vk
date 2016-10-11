@@ -9,7 +9,9 @@ export const Voting = React.createClass({
         console.log(parseInt(this.props.chosenSongIndex)+1);
         //play next song in playlist array
         var nextSongObj = this.props.playlist.get(parseInt(this.props.chosenSongIndex)+1);
-        this.props.setState({chosenSongId: nextSongObj.get('aid'), chosenSongMp3: nextSongObj.get('url'),
+        this.props.setState({
+            chosenSongId: nextSongObj.get('aid'),
+            chosenSongMp3: nextSongObj.get('url'),
             chosenSongIndex: (parseInt(this.props.chosenSongIndex)+1),
             chosenSongName: (nextSongObj.get('artist') + ': ' + nextSongObj.get('title'))
         });
@@ -22,7 +24,7 @@ export const Voting = React.createClass({
         var groups = [];
         var playlist = [];
 
-        VK.Api.call('friends.get', {fields:'first_name, last_name'}, function(r){
+        VK.Api.call('friends.get', {fields:'first_name, last_name, city, photo_50'}, function(r){
             friends = r.response;
             console.log(friends);
             VK.Api.call('groups.get', {extended:true}, function(r){
@@ -66,9 +68,17 @@ export const Voting = React.createClass({
     },
     playSong(url){
         var audio = this.refs.audio;
+        $("#jplayer_N").jPlayer("setMedia", {
+            title: this.props.chosenSongName,
+            //artist: this.props.chosenSongObj.get('artist'),
+            mp3: this.props.chosenSongMp3,
+            poster: "http://media7.fast-torrent.ru/media/files/s4/mu/pu/odisseya-1989.jpg"
+            });
+        $("#jplayer_N").jPlayer('play');
+
         //this.refs.audio.src = url;
-        audio.load();
-        audio.play();
+        //audio.load();
+        //audio.play();
     },
     render: function() {
         return <section className="vbox">
@@ -474,7 +484,7 @@ export const Voting = React.createClass({
                                          </div>
                                          </div>*/}
 
-                                         <div className="player">
+                                 {/*        <div className="player">
 
                                          <audio ref="audio" controls>
                                          <source src={this.props.chosenSongMp3} type="audio/mpeg"/>
@@ -484,7 +494,7 @@ export const Voting = React.createClass({
                                          <span className="nowPlaying">{this.props.chosenSongName}</span>
 
 
-                                         </div>
+                                         </div>*/}
                                         <div className="row row-sm">
 
                                             {this.props.playlist.map((obj, index) =>
@@ -495,10 +505,133 @@ export const Voting = React.createClass({
                                             )}
                                         </div>
                                     </section>
-
+                                    <footer className="footer bg-dark">
+                                        <div id="jp_container_N" className="jp-video-270p">
+                                            <div className="jp-type-playlist">
+                                                <div id="jplayer_N" className="jp-jplayer hide" style={{"width": "480px", "height": "270px"}}>
+                                                    <img id="jp_poster_0" src="images/m0.jpg" style={{"width": "480px", height: "270px", display: "inline"}}/>
+                                                        <audio ref="audio" id="jp_audio_0" preload="metadata"
+                                                               src={this.props.chosenSongMp3}
+                                                               title="Busted Chump"></audio>
+                                                        {/*<video id="jp_video_0" preload="metadata" title="Busted Chump" style={{"width": "0px", height: "0px"}}></video>*/}
+                                                </div>
+                                                <div className="jp-gui">
+                                                    <div className="jp-video-play hide" style={{display: "block"}}>
+                                                        <a className="jp-video-play-icon">play</a>
+                                                    </div>
+                                                    <div className="jp-interface">
+                                                        <div className="jp-controls">
+                                                            <div><a className="jp-previous"><i className="icon-control-rewind i-lg"></i></a></div>
+                                                            <div>
+                                                                <a className="jp-play" style={{display: "inline-block"}}><i className="icon-control-play i-2x"></i></a>
+                                                                <a className="jp-pause hid" style={{display: "none"}}><i className="icon-control-pause i-2x"></i></a>
+                                                            </div>
+                                                            <div><a className="jp-next"><i className="icon-control-forward i-lg"></i></a></div>
+                                                            <div className="hide"><a className="jp-stop"><i className="fa fa-stop"></i></a></div>
+                                                            <div><a className="" data-toggle="dropdown" data-target="#playlist"><i className="icon-list"></i></a></div>
+                                                            <div className="jp-progress hidden-xs">
+                                                                <div className="jp-seek-bar dk" style={{"width": "100%"}}>
+                                                                    <div className="jp-play-bar bg-info" style={{"width": "0%"}}>
+                                                                    </div>
+                                                                    <div className="jp-title text-lt" style={{display: "none"}}>Busted Chump</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="hidden-xs hidden-sm jp-current-time text-xs text-muted">00:00</div>
+                                                            <div className="hidden-xs hidden-sm jp-duration text-xs text-muted">00:00</div>
+                                                            <div className="hidden-xs hidden-sm">
+                                                                <a className="jp-mute" title="mute"><i className="icon-volume-2"></i></a>
+                                                                <a className="jp-unmute hid" title="unmute" style={{"display": "none"}}><i className="icon-volume-off"></i></a>
+                                                            </div>
+                                                            <div className="hidden-xs hidden-sm jp-volume">
+                                                                <div className="jp-volume-bar dk">
+                                                                    <div className="jp-volume-bar-value lter" style={{"width": "80%"}}></div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <a className="jp-shuffle" title="shuffle"><i className="icon-shuffle text-muted"></i></a>
+                                                                <a className="jp-shuffle-off hid" title="shuffle off" style={{"display": "none"}}><i className="icon-shuffle text-lt"></i></a>
+                                                            </div>
+                                                            <div>
+                                                                <a className="jp-repeat" title="repeat"><i className="icon-loop text-muted"></i></a>
+                                                                <a className="jp-repeat-off hid" title="repeat off" style={{"display": "none"}}><i className="icon-loop text-lt"></i></a>
+                                                            </div>
+                                                            <div className="hide">
+                                                                <a className="jp-full-screen" title="full screen"><i className="fa fa-expand"></i></a>
+                                                                <a className="jp-restore-screen" title="restore screen" style={{"display": "none"}}><i className="fa fa-compress text-lt"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="jp-playlist dropup" id="playlist">
+                                                    <ul className="dropdown-menu aside-xl dker" style={{"display": "block"}}><li className="jp-playlist-current"><div><a href="javascript:;" className="jp-playlist-item-remove">×</a><a href="javascript:;" className="jp-playlist-item jp-playlist-current" tabIndex="1">Busted Chump <span className="jp-artist">by ADG3</span></a></div></li><li><div><a href="javascript:;" className="jp-playlist-item-remove">×</a><a href="javascript:;" className="jp-playlist-item" tabIndex="1">Chucked Knuckles <span className="jp-artist">by 3studios</span></a></div></li><li><div><a href="javascript:;" className="jp-playlist-item-remove">×</a><a href="javascript:;" className="jp-playlist-item" tabIndex="1">Cloudless Days <span className="jp-artist">by ADG3 Studios</span></a></div></li><li><div><a href="javascript:;" className="jp-playlist-item-remove">×</a><a href="javascript:;" className="jp-playlist-item" tabIndex="1">Core Issues <span className="jp-artist">by Studios</span></a></div></li><li><div><a href="javascript:;" className="jp-playlist-item-remove">×</a><a href="javascript:;" className="jp-playlist-item" tabIndex="1">Cryptic Psyche <span className="jp-artist">by ADG3</span></a></div></li><li><div><a href="javascript:;" className="jp-playlist-item-remove">×</a><a href="javascript:;" className="jp-playlist-item" tabIndex="1">Electro Freak <span className="jp-artist">by Studios</span></a></div></li><li><div><a href="javascript:;" className="jp-playlist-item-remove">×</a><a href="javascript:;" className="jp-playlist-item" tabIndex="1">Freeform <span className="jp-artist">by ADG</span></a></div></li></ul>
+                                                </div>
+                                                <div className="jp-no-solution hide" style={{"display": "none"}}>
+                                                    <span>Update Required</span>
+                                                    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </footer>
                                 </section>
                             </section>
+                            <aside className="aside-md bg-light dk" id="sidebar">
+                                <section className="vbox animated fadeInRight">
+                                    <section className="w-f-md scrollable hover">
+                                        <h4 className="font-thin m-l-md m-t">Connected</h4>
+                                        <ul className="list-group no-bg no-borders auto m-t-n-xxs">
 
+                                            {this.props.friends.map((obj, index) =>
+                                                <li key={obj.get('uid')} className="list-group-item">
+                                                <span className="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                                                <img src="images/a1.png" alt="..." className="img-circle"/>
+                                                <i className="on b-light right sm"></i>
+                                                </span>
+                                                <div className="clear">
+                                                <div><a href="#">{obj.get('first_name')+' '+obj.get('last_name')}</a></div>
+                                                <small className="text-muted">
+                                                    {(typeof obj.get('city') == 'object')? obj.get('city').title : ''}</small>
+                                                </div>
+                                                </li>
+                                            )}
+
+                                            <li className="list-group-item">
+                      <span className="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a1.png" alt="..." className="img-circle"/>
+                        <i className="on b-light right sm"></i>
+                      </span>
+                                                <div className="clear">
+                                                    <div><a href="#">Chris Fox</a></div>
+                                                    <small className="text-muted">New York</small>
+                                                </div>
+                                            </li>
+
+
+                                            <li className="list-group-item">
+                      <span className="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a2.png" alt="..."/>
+                        <i className="on b-light right sm"></i>
+                      </span>
+                                                <div className="clear">
+                                                    <div><a href="#">Amanda Conlan</a></div>
+                                                    <small className="text-muted">France</small>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                    <footer className="footer footer-md bg-black">
+                                        <form className="" role="search">
+                                            <div className="form-group clearfix m-b-none">
+                                                <div className="input-group m-t m-b">
+                        <span className="input-group-btn">
+                          <button type="submit" className="btn btn-sm bg-empty text-muted btn-icon"><i className="fa fa-search"></i></button>
+                        </span>
+                                                    <input type="text" className="form-control input-sm text-white bg-empty b-b b-dark no-border" placeholder="Search members"/>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </footer>
+                                </section>
+                            </aside>
                         </section>
                         <a href="#" className="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
                     </section>
@@ -524,7 +657,8 @@ function mapStateToProps(state) {
         chosenSongId: state.get('chosenSongId'),
         chosenSongMp3: state.get('chosenSongMp3'),
         chosenSongIndex: state.get('chosenSongIndex'),
-        chosenSongName: state.get('chosenSongName')
+        chosenSongName: state.get('chosenSongName'),
+        chosenSongObj: state.get('chosenSongObj')
     };
 }
 

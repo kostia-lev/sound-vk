@@ -25,7 +25,8 @@ store.dispatch({
             chosenSongIndex: -1,
             chosenSongName: '',
             loggedInUser: null,
-            autoPlay: false
+            autoPlay: false,
+            chosenSongObj: null
     }
 });
 
