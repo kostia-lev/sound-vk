@@ -1,10 +1,11 @@
 $(document).ready(function(){
 
-  var myPlaylist = new jPlayerPlaylist({
+  myPlaylist = new jPlayerPlaylist({
     jPlayer: "#jplayer_N",
     cssSelectorAncestor: "#jp_container_N"
-  }, [
-    {
+  },
+      [
+    /*{
       title:"Busted Chump",
       artist:"ADG3",
       mp3:"http://cs611623.vk.me/u26116474/audios/db10743f1124.mp3?extra=594Zyd6xRFVH1HGCbnxgWgk1eVg-AW6hoy8Z4ncyxI2vAdU_qvWPBDAhDTggIqiV6Il5RZjt5YH2ZXosXc9Xf-YfN8jNysqX1wpIYq1X9j6Zi_NcN_YATDxCW58wKQSCn1_372SH__k",
@@ -45,7 +46,7 @@ $(document).ready(function(){
       artist:"ADG",
       mp3:"http://cs611623.vk.me/u26116474/audios/db10743f1124.mp3?extra=594Zyd6xRFVH1HGCbnxgWgk1eVg-AW6hoy8Z4ncyxI2vAdU_qvWPBDAhDTggIqiV6Il5RZjt5YH2ZXosXc9Xf-YfN8jNysqX1wpIYq1X9j6Zi_NcN_YATDxCW58wKQSCn1_372SH__k",
       poster: "http://media7.fast-torrent.ru/media/files/s4/mu/pu/odisseya-1989.jpg"
-    }
+    }*/
   ], {
     playlistOptions: {
       enableRemoveControls: true,
@@ -91,7 +92,7 @@ $(document).ready(function(){
 
   // video
 
-  $("#jplayer_1").jPlayer({
+  /*$("#jplayer_1").jPlayer({
     ready: function () {
       $(this).jPlayer("setMedia", {
         title: "Big Buck Bunny",
@@ -111,6 +112,6 @@ $(document).ready(function(){
     globalVolume: true,
     smoothPlayBar: true,
     keyEnabled: true
-  });
+  });*/
 
 });

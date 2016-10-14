@@ -15,10 +15,11 @@ export const Voting = React.createClass({
             chosenSongIndex: (parseInt(this.props.chosenSongIndex)+1),
             chosenSongName: (nextSongObj.get('artist') + ': ' + nextSongObj.get('title'))
         });
-        this.playSong(nextSongObj.get('url'));
+        this.playSong(nextSongObj);
     },
     componentDidMount: function() {
-        $(this.refs.audio).on('ended', this.songEnded);
+        $("#jplayer_N").on('jPlayer_ended', this.songEnded);
+        //$("#my-jplayer").unbind($.jPlayer.event.repeat + ".jPlayer");
         var self = this;
         var friends = [];
         var groups = [];
@@ -66,14 +67,14 @@ export const Voting = React.createClass({
             this.props.setState({playlist: []});
         }
     },
-    playSong(url){
+    playSong(songObj){
         var audio = this.refs.audio;
         $("#jplayer_N").jPlayer("setMedia", {
-            title: this.props.chosenSongName,
-            //artist: this.props.chosenSongObj.get('artist'),
-            mp3: this.props.chosenSongMp3,
-            poster: "http://media7.fast-torrent.ru/media/files/s4/mu/pu/odisseya-1989.jpg"
-            });
+                                title: songObj.get('title'),
+                                artist: songObj.get('artist'),
+                                mp3: songObj.get('url'),
+                                poster: "http://media7.fast-torrent.ru/media/files/s4/mu/pu/odisseya-1989.jpg"
+                                });
         $("#jplayer_N").jPlayer('play');
 
         //this.refs.audio.src = url;
@@ -499,8 +500,7 @@ export const Voting = React.createClass({
 
                                             {this.props.playlist.map((obj, index) =>
                                                 (index==0)? '':<SongContainer index={String(index)} changeSong={this.playSong} key={obj.get('aid')}
-                                                                              url={obj.get('url')} aid={obj.get('aid')} songObj = {obj}
-                                                                              entry={obj.get('artist') + ': ' + obj.get('title') } >
+                                                                              url={obj.get('url')} aid={obj.get('aid')} songObj = {obj} >
                                             </SongContainer>
                                             )}
                                         </div>

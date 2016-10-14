@@ -260,9 +260,10 @@ Date.now = Date.now || function() { return +new Date; };
     $("[data-toggle=tooltip]").tooltip();
 
     // class
-  	$(document).on('click', '[data-toggle^="class"]', function(e){
+ /* 	$(document).on('click', '[data-toggle^="class"]', function(e){
   		e && e.preventDefault();
   		var $this = $(e.target), $class , $target, $tmp, $classes, $targets;
+
   		!$this.data('toggle') && ($this = $this.closest('[data-toggle^="class"]'));
     	$class = $this.data()['toggle'];
     	$target = $this.data('target') || $this.attr('href');
@@ -272,7 +273,7 @@ Date.now = Date.now || function() { return +new Date; };
         if ( $classes[index].indexOf( '*' ) !== -1 ) {
           var patt = new RegExp( '\\s' + 
               $classes[index].
-                replace( /\*/g, '[A-Za-z0-9-_]+' ).
+                replace( /\*!/g, '[A-Za-z0-9-_]+' ).
                 split( ' ' ).
                 join( '\\s|\\s' ) + 
               '\\s', 'g' );
@@ -287,7 +288,7 @@ Date.now = Date.now || function() { return +new Date; };
         ($targets[index] !='#') && $($targets[index]).toggleClass($classes[index]) || $this.toggleClass($classes[index]);
       });
     	$this.toggleClass('active');
-  	});
+  	});*/
 
     // panel toggle
     $(document).on('click', '.panel-toggle', function(e){
