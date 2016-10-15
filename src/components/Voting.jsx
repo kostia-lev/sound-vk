@@ -3,6 +3,9 @@ import {SongContainer} from './Song';
 import * as actionCreators from '../action_creators';
 import {connect} from 'react-redux';
 import {LoginContainer} from './Login';
+//import jsmediatags from "jsmediatags";
+var jsmediatags = window.jsmediatags;
+
 
 export const Voting = React.createClass({
     songEnded: function(e){
@@ -77,9 +80,14 @@ export const Voting = React.createClass({
                                 });
         $("#jplayer_N").jPlayer('play');
 
-        //this.refs.audio.src = url;
-        //audio.load();
-        //audio.play();
+        jsmediatags.read('http://localhost:8080/o.mp3', {
+            onSuccess: function(tag) {
+                console.log(tag);
+            },
+            onError: function(error) {
+                console.log(error);
+            }
+        });
     },
     render: function() {
         return <section className="vbox">
