@@ -3,6 +3,7 @@ import {SongContainer} from './Song';
 import * as actionCreators from '../action_creators';
 import {connect} from 'react-redux';
 import {LoginContainer} from './Login';
+import {ListGroupItemContainer} from './ListGroupItem';
 //import jsmediatags from "jsmediatags";
 var jsmediatags = window.jsmediatags;
 
@@ -41,14 +42,9 @@ export const Voting = React.createClass({
     componentWillUnmount: function(){
         $(this.refs.audio).unbind('audio');
     },
-    handleFriendsChange(e){
-        this.props.setState({chosenFriendId: e.target.value, chosenGroupId:-1});
-        this.refs.groupsSelect.value = '-1';
-        if(e.target.value != -1){
-            this.getAudios(e.target.value);
-        }else{
-            this.props.setState({playlist: []});
-        }
+    handleFriendsChange(newSongId){
+
+        this.getAudios(newSongId);
     },
     getAudios(owner_id){
         var self = this;
@@ -589,17 +585,7 @@ export const Voting = React.createClass({
                                         <ul className="list-group no-bg no-borders auto m-t-n-xxs">
 
                                             {this.props.friends.map((obj, index) =>
-                                                <li key={obj.get('uid')} className="list-group-item">
-                                                <span className="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
-                                                <img src="images/a1.png" alt="..." className="img-circle"/>
-                                                <i className="on b-light right sm"></i>
-                                                </span>
-                                                <div className="clear">
-                                                <div><a href="#">{obj.get('first_name')+' '+obj.get('last_name')}</a></div>
-                                                <small className="text-muted">
-                                                    {(typeof obj.get('city') == 'object')? obj.get('city').title : ''}</small>
-                                                </div>
-                                                </li>
+                                                <ListGroupItemContainer obj={obj} key={obj.get('uid')} handleFriendsChange={this.handleFriendsChange}/>
                                             )}
 
                                             <li className="list-group-item">
