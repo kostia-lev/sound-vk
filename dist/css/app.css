@@ -192,6 +192,10 @@ a.list-group-item:focus {
 .list-group-item.media {
   margin-top: 0;
 }
+/*.friendsContainer.active, .friendsContainer.active {
+  border-color: #4cb6cb !important;
+  background-color: #4cb6cb !important;
+}*/
 .list-group-item.active {
   color: #fff;
   border-color: #4cb6cb !important;

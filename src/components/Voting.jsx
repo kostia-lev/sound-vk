@@ -448,7 +448,7 @@ export const Voting = React.createClass({
                                           </span></h2>
 
 
-                                        {(!this.props.authenticated)? '':
+                                        {/*(!this.props.authenticated)? '':
                                         <div>
                                          <select ref="friendsSelect" onChange={this.handleFriendsChange} name="friends">
                                          <option value="-1">-</option>
@@ -470,7 +470,7 @@ export const Voting = React.createClass({
                                          </option>
                                          )}
                                          </select>
-                                         </div>}
+                                         </div>*/}
 
 
                                         {/*<div className="playList">
@@ -575,13 +575,18 @@ export const Voting = React.createClass({
                             <aside className="aside-md bg-light dk" id="sidebar">
                                 <section className="vbox animated fadeInRight">
                                     <section className="w-f-md scrollable hover">
-                                        <h4 className="font-thin m-l-md m-t active"><a href="#friends" data-toggle="tab">Friends</a></h4>
-                                        <h4 className="font-thin m-l-md m-t"><a href="#groups" data-toggle="tab">Groups</a></h4>
+                                        <div className="clearfix">
+                                            <h4 className={(this.props.chosenFriendId>-1)? "font-thin m-l-md m-t active pull-left friendsContainer":
+                                                "font-thin m-l-md m-t pull-left friendsContainer"}>
+                                                <a href="#friends" data-toggle="tab">Friends</a></h4>
+                                            <h4 className={(this.props.chosenGroupId>-1)? "font-thin m-l-md m-t active pull-right groupsContainer" :
+                                                "font-thin m-l-md m-t pull-right groupsContainer"}><a href="#groups" data-toggle="tab">Groups</a></h4>
+                                        </div>
                                         <div className="tab-content">
                                             <ul id="groups" className="list-group no-bg no-borders auto m-t-n-xxs tab-pane fade in active">
 
                                                 {this.props.groups.map((obj, index) =>
-                                                    <ListGroupItemGroupContainer obj={obj} key={obj.get('uid')} handleGroupsChange={this.handleGroupsChange}/>
+                                                    (typeof obj == 'object')?<ListGroupItemGroupContainer obj={obj} key={obj.get('gid')} handleGroupsChange={this.handleGroupsChange}/>:''
                                                 )}
 
                                                 <li className="list-group-item">

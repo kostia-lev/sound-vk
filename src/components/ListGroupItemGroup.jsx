@@ -16,7 +16,7 @@ export const ListGroupItemGroup = React.createClass({
                                                 <i className="on b-light right sm"></i>
                                                 </span>
             <div className="clear">
-                <div><a href="#">{this.props.obj.get('first_name')+' '+ this.props.obj.get('last_name')}</a></div>
+                <div><a href="#">{this.props.obj.get('name')}</a></div>
                 <small className="text-muted">
                     {(typeof this.props.obj.get('city') == 'object')? this.props.obj.get('city').title : ''}</small>
             </div>
