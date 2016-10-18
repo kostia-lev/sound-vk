@@ -4,6 +4,7 @@ import * as actionCreators from '../action_creators';
 import {connect} from 'react-redux';
 import {LoginContainer} from './Login';
 import {ListGroupItemContainer} from './ListGroupItem';
+import {ListGroupItemGroupContainer} from './ListGroupItemGroup';
 //import jsmediatags from "jsmediatags";
 var jsmediatags = window.jsmediatags;
 
@@ -42,9 +43,8 @@ export const Voting = React.createClass({
     componentWillUnmount: function(){
         $(this.refs.audio).unbind('audio');
     },
-    handleFriendsChange(newSongId){
-
-        this.getAudios(newSongId);
+    handleFriendsChange(newFriendId){
+        this.getAudios(newFriendId);
     },
     getAudios(owner_id){
         var self = this;
@@ -57,14 +57,8 @@ export const Voting = React.createClass({
             }
         });
     },
-    handleGroupsChange(e){
-        this.props.setState({chosenGroupId: e.target.value, chosenFriendId: -1});
-        this.refs.friendsSelect.value = '-1';
-        if(e.target.value != -1){
-            this.getAudios('-' + e.target.value);
-        }else{
-            this.props.setState({playlist: []});
-        }
+    handleGroupsChange(newFriendId){
+        this.getAudios('-' + newFriendId);
     },
     playSong(songObj){
         var audio = this.refs.audio;
@@ -581,36 +575,56 @@ export const Voting = React.createClass({
                             <aside className="aside-md bg-light dk" id="sidebar">
                                 <section className="vbox animated fadeInRight">
                                     <section className="w-f-md scrollable hover">
-                                        <h4 className="font-thin m-l-md m-t">Connected</h4>
-                                        <ul className="list-group no-bg no-borders auto m-t-n-xxs">
+                                        <h4 className="font-thin m-l-md m-t active"><a href="#friends" data-toggle="tab">Friends</a></h4>
+                                        <h4 className="font-thin m-l-md m-t"><a href="#groups" data-toggle="tab">Groups</a></h4>
+                                        <div className="tab-content">
+                                            <ul id="groups" className="list-group no-bg no-borders auto m-t-n-xxs tab-pane fade in active">
 
-                                            {this.props.friends.map((obj, index) =>
-                                                <ListGroupItemContainer obj={obj} key={obj.get('uid')} handleFriendsChange={this.handleFriendsChange}/>
-                                            )}
+                                                {this.props.groups.map((obj, index) =>
+                                                    <ListGroupItemGroupContainer obj={obj} key={obj.get('uid')} handleGroupsChange={this.handleGroupsChange}/>
+                                                )}
 
-                                            <li className="list-group-item">
+                                                <li className="list-group-item">
                       <span className="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
                         <img src="images/a1.png" alt="..." className="img-circle"/>
                         <i className="on b-light right sm"></i>
                       </span>
-                                                <div className="clear">
-                                                    <div><a href="#">Chris Fox</a></div>
-                                                    <small className="text-muted">New York</small>
-                                                </div>
-                                            </li>
+                                                    <div className="clear">
+                                                        <div><a href="#">Chris Fox</a></div>
+                                                        <small className="text-muted">New York</small>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul id="friends" className="list-group no-bg no-borders auto m-t-n-xxs tab-pane fade">
+
+                                                {this.props.friends.map((obj, index) =>
+                                                    <ListGroupItemContainer obj={obj} key={obj.get('uid')} handleFriendsChange={this.handleFriendsChange}/>
+                                                )}
+
+                                                <li className="list-group-item">
+                      <span className="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
+                        <img src="images/a1.png" alt="..." className="img-circle"/>
+                        <i className="on b-light right sm"></i>
+                      </span>
+                                                    <div className="clear">
+                                                        <div><a href="#">Chris Fox</a></div>
+                                                        <small className="text-muted">New York</small>
+                                                    </div>
+                                                </li>
 
 
-                                            <li className="list-group-item">
+                                                <li className="list-group-item">
                       <span className="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
                         <img src="images/a2.png" alt="..."/>
                         <i className="on b-light right sm"></i>
                       </span>
-                                                <div className="clear">
-                                                    <div><a href="#">Amanda Conlan</a></div>
-                                                    <small className="text-muted">France</small>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                    <div className="clear">
+                                                        <div><a href="#">Amanda Conlan</a></div>
+                                                        <small className="text-muted">France</small>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </section>
                                     <footer className="footer footer-md bg-black">
                                         <form className="" role="search">
