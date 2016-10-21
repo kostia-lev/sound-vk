@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {LoginContainer} from './Login';
 import {ListGroupItemContainer} from './ListGroupItem';
 import {ListGroupItemGroupContainer} from './ListGroupItemGroup';
+import {FriendGroupSearchContainer as FriendGroupSearch} from './FriendGroupSearch';
 //import jsmediatags from "jsmediatags";
 var jsmediatags = window.jsmediatags;
 
@@ -576,14 +577,14 @@ export const Voting = React.createClass({
                                 <section className="vbox animated fadeInRight">
                                     <section className="w-f-md scrollable hover">
                                         <div className="clearfix">
-                                            <h4 className={(this.props.chosenFriendId>-1)? "font-thin m-l-md m-t active pull-left friendsContainer":
+                                            <h4 className={(this.props.chosenFriendId>-1)? "m-l-md m-t active pull-left friendsContainer":
                                                 "font-thin m-l-md m-t pull-left friendsContainer"}>
                                                 <a href="#friends" data-toggle="tab">Friends</a></h4>
-                                            <h4 className={(this.props.chosenGroupId>-1)? "font-thin m-l-md m-t active pull-right groupsContainer" :
+                                            <h4 className={(this.props.chosenGroupId>-1)? "m-l-md m-t active pull-right groupsContainer" :
                                                 "font-thin m-l-md m-t pull-right groupsContainer"}><a href="#groups" data-toggle="tab">Groups</a></h4>
                                         </div>
                                         <div className="tab-content">
-                                            <ul id="groups" className="list-group no-bg no-borders auto m-t-n-xxs tab-pane fade in active">
+                                            <ul id="groups" className="list-group no-bg no-borders auto m-t-n-xxs tab-pane fade">
 
                                                 {this.props.groups.map((obj, index) =>
                                                     (typeof obj == 'object')?<ListGroupItemGroupContainer obj={obj} key={obj.get('gid')} handleGroupsChange={this.handleGroupsChange}/>:''
@@ -600,7 +601,7 @@ export const Voting = React.createClass({
                                                     </div>
                                                 </li>
                                             </ul>
-                                            <ul id="friends" className="list-group no-bg no-borders auto m-t-n-xxs tab-pane fade">
+                                            <ul id="friends" className="list-group no-bg no-borders auto m-t-n-xxs tab-pane fade in active">
 
                                                 {this.props.friends.map((obj, index) =>
                                                     <ListGroupItemContainer obj={obj} key={obj.get('uid')} handleFriendsChange={this.handleFriendsChange}/>
@@ -632,16 +633,7 @@ export const Voting = React.createClass({
                                         </div>
                                     </section>
                                     <footer className="footer footer-md bg-black">
-                                        <form className="" role="search">
-                                            <div className="form-group clearfix m-b-none">
-                                                <div className="input-group m-t m-b">
-                        <span className="input-group-btn">
-                          <button type="submit" className="btn btn-sm bg-empty text-muted btn-icon"><i className="fa fa-search"></i></button>
-                        </span>
-                                                    <input type="text" className="form-control input-sm text-white bg-empty b-b b-dark no-border" placeholder="Search members"/>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <FriendGroupSearch onType={this.onType}/>
                                     </footer>
                                 </section>
                             </aside>
@@ -671,7 +663,8 @@ function mapStateToProps(state) {
         chosenSongMp3: state.get('chosenSongMp3'),
         chosenSongIndex: state.get('chosenSongIndex'),
         chosenSongName: state.get('chosenSongName'),
-        chosenSongObj: state.get('chosenSongObj')
+        chosenSongObj: state.get('chosenSongObj'),
+        friendGroupSearch: state.get('friendGroupSearch')
     };
 }
 

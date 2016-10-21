@@ -10,6 +10,8 @@ export default function(state = Map(), action) {
             return setState(state, action.state);
         case 'AUTH':
             return setState(state, action.state);
+        case 'FRIEND_GROUP_SEARCH':
+            return setState(state, action.state);
     }
     return state;
 }

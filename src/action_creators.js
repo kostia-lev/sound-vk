@@ -14,6 +14,15 @@ export function auth(logged, user) {
         }
     }
 }
+
+export function friendGroupSearchOntype(txt) {
+    return {
+        type: 'FRIEND_GROUP_SEARCH',
+        state: {
+            friendGroupSearch: txt
+        }
+    }
+}
 export function receiveFriendsGroups(friends, groups) {
     return {
         type: 'SET_STATE',
