@@ -7,8 +7,14 @@ export const ListGroupItemGroup = React.createClass({
         this.props.setState({chosenGroupId: this.props.obj.get('gid'), chosenFriendId:-1});
         this.props.handleGroupsChange(this.props.obj.get('gid'));
     },
+    isVisible: function(){
+        return (this.props.tabListActive == '#friends' || typeof this.props.friendGroupSearch == 'undefined'
+        || this.props.friendGroupSearch == '' ||
+        (this.props.obj.get('name').toLowerCase().
+        indexOf(this.props.friendGroupSearch.toLowerCase()) != -1));
+    },
     render: function() {
-        return <li onClick={this.handleGroupsChange}
+        return <li onClick={this.handleGroupsChange} style={{display: this.isVisible()? "inherit":"none"}}
                    className={(typeof this.props.chosenGroupId != 'undefined' && typeof this.props.chosenGroupId != 'undefined' &&
         this.props.obj.get('gid') == this.props.chosenGroupId)? "list-group-item active":"list-group-item" }>
                                                 <span className="pull-left thumb-xs m-t-xs avatar m-l-xs m-r-sm">
@@ -27,7 +33,9 @@ export const ListGroupItemGroup = React.createClass({
 function mapStateToProps(state) {
     return {
         chosenFriendId: state.get('chosenFriendId'),
-        chosenGroupId: state.get('chosenGroupId')
+        chosenGroupId: state.get('chosenGroupId'),
+        tabListActive: state.get('tabListActive'),
+        friendGroupSearch: state.get('friendGroupSearch')
     };
 }
 

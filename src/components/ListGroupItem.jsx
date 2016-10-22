@@ -8,7 +8,7 @@ export const ListGroupItem = React.createClass({
         this.props.handleFriendsChange(this.props.obj.get('uid'));
     },
     isVisible: function(){
-        return (typeof this.props.friendGroupSearch == 'undefined'
+        return (this.props.tabListActive == '#groups' || typeof this.props.friendGroupSearch == 'undefined'
         || this.props.friendGroupSearch == '' ||
         (this.props.obj.get('first_name').toLowerCase().
         indexOf(this.props.friendGroupSearch.toLowerCase()) != -1) || (this.props.obj.get('last_name').toLowerCase().
@@ -36,7 +36,8 @@ function mapStateToProps(state) {
     return {
         chosenFriendId: state.get('chosenFriendId'),
         chosenGroupId: state.get('chosenGroupId'),
-        friendGroupSearch: state.get('friendGroupSearch')
+        friendGroupSearch: state.get('friendGroupSearch'),
+        tabListActive: state.get('tabListActive')
     };
 }
 

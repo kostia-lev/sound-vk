@@ -23,6 +23,30 @@ export const Voting = React.createClass({
         });
         this.playSong(nextSongObj);
     },
+    nextSong: function(e){
+        console.log(parseInt(this.props.chosenSongIndex)+1);
+        //play next song in playlist array
+        var nextSongObj = this.props.playlist.get(parseInt(this.props.chosenSongIndex)+1);
+        this.props.setState({
+            chosenSongId: nextSongObj.get('aid'),
+            chosenSongMp3: nextSongObj.get('url'),
+            chosenSongIndex: (parseInt(this.props.chosenSongIndex)+1),
+            chosenSongName: (nextSongObj.get('artist') + ': ' + nextSongObj.get('title'))
+        });
+        this.playSong(nextSongObj);
+    },
+    prevSong: function(e){
+        console.log(parseInt(this.props.chosenSongIndex)-1);
+        //play next song in playlist array
+        var nextSongObj = this.props.playlist.get(parseInt(this.props.chosenSongIndex)-1);
+        this.props.setState({
+            chosenSongId: nextSongObj.get('aid'),
+            chosenSongMp3: nextSongObj.get('url'),
+            chosenSongIndex: (parseInt(this.props.chosenSongIndex)-1),
+            chosenSongName: (nextSongObj.get('artist') + ': ' + nextSongObj.get('title'))
+        });
+        this.playSong(nextSongObj);
+    },
     componentDidMount: function() {
         $("#jplayer_N").on('jPlayer_ended', this.songEnded);
         //$("#my-jplayer").unbind($.jPlayer.event.repeat + ".jPlayer");
@@ -39,6 +63,10 @@ export const Voting = React.createClass({
                 console.log(groups);
                 self.props.receiveFriendsGroups(friends, groups);
             });
+        });
+
+        $(document).on('shown.bs.tab', function(e){
+            self.props.tabChangeFriendsGroups($(e.target).attr('data-targetId'));
         });
     },
     componentWillUnmount: function(){
@@ -520,12 +548,12 @@ export const Voting = React.createClass({
                                                     </div>
                                                     <div className="jp-interface">
                                                         <div className="jp-controls">
-                                                            <div><a className="jp-previous"><i className="icon-control-rewind i-lg"></i></a></div>
+                                                            <div><a className="jp-previous"><i onClick={this.prevSong} className="icon-control-rewind i-lg"></i></a></div>
                                                             <div>
                                                                 <a className="jp-play" style={{display: "inline-block"}}><i className="icon-control-play i-2x"></i></a>
                                                                 <a className="jp-pause hid" style={{display: "none"}}><i className="icon-control-pause i-2x"></i></a>
                                                             </div>
-                                                            <div><a className="jp-next"><i className="icon-control-forward i-lg"></i></a></div>
+                                                            <div><a className="jp-next"><i onClick={this.nextSong} className="icon-control-forward i-lg"></i></a></div>
                                                             <div className="hide"><a className="jp-stop"><i className="fa fa-stop"></i></a></div>
                                                             <div><a className="" data-toggle="dropdown" data-target="#playlist"><i className="icon-list"></i></a></div>
                                                             <div className="jp-progress hidden-xs">
@@ -579,9 +607,9 @@ export const Voting = React.createClass({
                                         <div className="clearfix">
                                             <h4 className={(this.props.chosenFriendId>-1)? "m-l-md m-t active pull-left friendsContainer":
                                                 "font-thin m-l-md m-t pull-left friendsContainer"}>
-                                                <a href="#friends" data-toggle="tab">Friends</a></h4>
+                                                <a href="#friends" data-targetId="#friends" data-toggle="tab">Friends</a></h4>
                                             <h4 className={(this.props.chosenGroupId>-1)? "m-l-md m-t active pull-right groupsContainer" :
-                                                "font-thin m-l-md m-t pull-right groupsContainer"}><a href="#groups" data-toggle="tab">Groups</a></h4>
+                                                "font-thin m-l-md m-t pull-right groupsContainer"}><a href="#groups" data-targetId="#groups" data-toggle="tab">Groups</a></h4>
                                         </div>
                                         <div className="tab-content">
                                             <ul id="groups" className="list-group no-bg no-borders auto m-t-n-xxs tab-pane fade">
@@ -664,7 +692,7 @@ function mapStateToProps(state) {
         chosenSongIndex: state.get('chosenSongIndex'),
         chosenSongName: state.get('chosenSongName'),
         chosenSongObj: state.get('chosenSongObj'),
-        friendGroupSearch: state.get('friendGroupSearch')
+        tabListActive: state.get('tabListActive')
     };
 }
 

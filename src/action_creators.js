@@ -23,6 +23,16 @@ export function friendGroupSearchOntype(txt) {
         }
     }
 }
+
+export function tabChangeFriendsGroups(tabName) {
+    return {
+        type: 'FRIEND_TAB_CHANGE',
+        state: {
+            tabListActive: tabName
+        }
+    }
+}
+
 export function receiveFriendsGroups(friends, groups) {
     return {
         type: 'SET_STATE',

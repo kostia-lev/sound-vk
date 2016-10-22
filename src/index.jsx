@@ -26,14 +26,15 @@ store.dispatch({
             chosenSongName: '',
             loggedInUser: null,
             autoPlay: false,
-            chosenSongObj: null
+            chosenSongObj: null,
+            tabListActive: '#friends'
     }
 });
 
 
 ReactDOM.render(
     <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
         <Route path="/" component={VotingContainer} />
     </Router>
     </Provider>,
