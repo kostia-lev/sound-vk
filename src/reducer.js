@@ -17,6 +17,9 @@ export default function(state = Map(), action) {
 
         case 'FRIEND_TAB_CHANGE':
             return setState(state, action.state);
+
+        case 'SET_SONG':
+            return setState(state, action.state);
     }
     return state;
 }

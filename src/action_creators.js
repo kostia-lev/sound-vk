@@ -37,8 +37,20 @@ export function receiveFriendsGroups(friends, groups) {
     return {
         type: 'SET_STATE',
         state: {
-                friends: friends,
-                groups: groups
+            friends: friends,
+            groups: groups
+        }
+    }
+}
+export function setNewCurrentSong(index, songObj) {
+    return {
+        type: 'SET_SONG',
+        state: {
+            chosenSongId: songObj.get('aid'),
+            chosenSongMp3: songObj.get('url'),
+            chosenSongIndex: index,
+            chosenSongName: songObj.get('name'),
+            chosenSongObj: songObj
         }
     }
 }

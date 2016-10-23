@@ -13,10 +13,12 @@ export const Song = React.createClass({
             return;
         }
 
-        this.props.setState({chosenSongId: this.props.aid, chosenSongMp3: this.props.url,
-            chosenSongIndex: this.props.index, chosenSongName: this.props.entry, chosenSongObj: this.props.songObj});
-        console.log(this.props.songObj.get('title'));
-        this.props.changeSong(this.props.songObj);
+/*        this.props.setState({chosenSongId: this.props.aid, chosenSongMp3: this.props.url,
+            chosenSongIndex: this.props.index, chosenSongName: this.props.entry, chosenSongObj: this.props.songObj});*/
+
+        //this.props.setNewCurrentSong(this.props.index, this.props.songObj);
+
+        this.props.changeSong(this.props.index);
     },
     secondsFormat(seconds){
         var minutes = Math.floor(seconds/60);

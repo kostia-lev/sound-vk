@@ -23,37 +23,15 @@ export const Voting = React.createClass({
         });
         this.playSong(nextSongObj);
     },
-    nextSong: function(e){
-        console.log(parseInt(this.props.chosenSongIndex)+1);
-        //play next song in playlist array
-        var nextSongObj = this.props.playlist.get(parseInt(this.props.chosenSongIndex)+1);
-        this.props.setState({
-            chosenSongId: nextSongObj.get('aid'),
-            chosenSongMp3: nextSongObj.get('url'),
-            chosenSongIndex: (parseInt(this.props.chosenSongIndex)+1),
-            chosenSongName: (nextSongObj.get('artist') + ': ' + nextSongObj.get('title'))
-        });
-        this.playSong(nextSongObj);
-    },
-    prevSong: function(e){
-        console.log(parseInt(this.props.chosenSongIndex)-1);
-        //play next song in playlist array
-        var nextSongObj = this.props.playlist.get(parseInt(this.props.chosenSongIndex)-1);
-        this.props.setState({
-            chosenSongId: nextSongObj.get('aid'),
-            chosenSongMp3: nextSongObj.get('url'),
-            chosenSongIndex: (parseInt(this.props.chosenSongIndex)-1),
-            chosenSongName: (nextSongObj.get('artist') + ': ' + nextSongObj.get('title'))
-        });
-        this.playSong(nextSongObj);
-    },
     componentDidMount: function() {
-        $("#jplayer_N").on('jPlayer_ended', this.songEnded);
-        //$("#my-jplayer").unbind($.jPlayer.event.repeat + ".jPlayer");
+        var self = this;
+        $("#jplayer_N").on("jPlayer_play", function(e){
+            self.props.setNewCurrentSong(myPlaylist.current, self.props.playlist.get(myPlaylist.current));
+        });
+
         var self = this;
         var friends = [];
         var groups = [];
-        var playlist = [];
 
         VK.Api.call('friends.get', {fields:'first_name, last_name, city, photo_50'}, function(r){
             friends = r.response;
@@ -79,7 +57,18 @@ export const Voting = React.createClass({
         var self = this;
         VK.Api.call('audio.get', {owner_id: owner_id}, function(r){
             if(r.response){
-                var audios = r.response;
+                var audios = [];
+
+                myPlaylist.remove();
+                for(var i = 1; i < r.response.length; i++){
+                    audios[i-1] = r.response[i];
+                    audios[i-1].mp3 = audios[i-1].url;
+                    audios[i-1].free = true;
+                    myPlaylist.add(audios[i-1]);
+                }
+
+                console.log(audios);
+
                 self.props.setState({playlist: audios});
             }else{
                 console.log(r);
@@ -89,15 +78,10 @@ export const Voting = React.createClass({
     handleGroupsChange(newFriendId){
         this.getAudios('-' + newFriendId);
     },
-    playSong(songObj){
+    playSong(songIndex){
         var audio = this.refs.audio;
-        $("#jplayer_N").jPlayer("setMedia", {
-                                title: songObj.get('title'),
-                                artist: songObj.get('artist'),
-                                mp3: songObj.get('url'),
-                                poster: "http://media7.fast-torrent.ru/media/files/s4/mu/pu/odisseya-1989.jpg"
-                                });
-        $("#jplayer_N").jPlayer('play');
+
+        myPlaylist.play(songIndex);
 
         jsmediatags.read('http://localhost:8080/o.mp3', {
             onSuccess: function(tag) {
@@ -526,9 +510,9 @@ export const Voting = React.createClass({
                                         <div className="row row-sm">
 
                                             {this.props.playlist.map((obj, index) =>
-                                                (index==0)? '':<SongContainer index={String(index)} changeSong={this.playSong} key={obj.get('aid')}
-                                                                              url={obj.get('url')} aid={obj.get('aid')} songObj = {obj} >
-                                            </SongContainer>
+                                                <SongContainer index={String(index)} changeSong={this.playSong} key={obj.get('aid')}
+                                                                              url={obj.get('url')} aid={obj.get('aid')} songObj = {obj}>
+                                                </SongContainer>
                                             )}
                                         </div>
                                     </section>
