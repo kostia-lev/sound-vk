@@ -42,6 +42,17 @@ export function receiveFriendsGroups(friends, groups) {
         }
     }
 }
+
+export function setActiveAudioResource(friendId, groupId) {
+    return {
+        type: 'SET_SOURCE',
+        state: {
+            chosenFriendId: friendId,
+            chosenGroupId: groupId
+        }
+    }
+}
+
 export function setNewCurrentSong(index, songObj) {
     return {
         type: 'SET_SONG',

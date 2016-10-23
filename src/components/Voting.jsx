@@ -64,8 +64,8 @@ export const Voting = React.createClass({
                     audios[i-1] = r.response[i];
                     audios[i-1].mp3 = audios[i-1].url;
                     audios[i-1].free = true;
-                    myPlaylist.add(audios[i-1]);
                 }
+                myPlaylist.setPlaylist(audios);
 
                 console.log(audios);
 
@@ -81,7 +81,7 @@ export const Voting = React.createClass({
     playSong(songIndex){
         var audio = this.refs.audio;
 
-        myPlaylist.play(songIndex);
+        myPlaylist.play(parseInt( songIndex ));
 
         jsmediatags.read('http://localhost:8080/o.mp3', {
             onSuccess: function(tag) {

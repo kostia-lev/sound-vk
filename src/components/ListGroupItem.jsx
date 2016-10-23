@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 export const ListGroupItem = React.createClass({
     handleFriendsChange: function(e){
-        this.props.setState({chosenFriendId: this.props.obj.get('uid'), chosenGroupId:-1});
+        this.props.setActiveAudioResource(this.props.obj.get('uid'), -1);
         this.props.handleFriendsChange(this.props.obj.get('uid'));
     },
     isVisible: function(){

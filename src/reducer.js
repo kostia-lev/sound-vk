@@ -20,6 +20,9 @@ export default function(state = Map(), action) {
 
         case 'SET_SONG':
             return setState(state, action.state);
+
+        case 'SET_SOURCE':
+            return setState(state, action.state);
     }
     return state;
 }
