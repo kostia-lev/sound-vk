@@ -5,12 +5,13 @@ export function setState(state) {
     };
 }
 
-export function auth(logged, user) {
+export function auth(logged, user, pic) {
     return {
         type: 'AUTH',
         state: {
                 authenticated: logged,
-                loggedInUser: user
+                loggedInUser: user,
+                loggedInUserPhotoSrc: pic
         }
     }
 }

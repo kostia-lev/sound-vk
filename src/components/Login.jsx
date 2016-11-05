@@ -10,16 +10,30 @@ export const Login = React.createClass({
         var self=this;
         if(!this.props.authenticated){
             VK.Auth.login(function(data){
-                console.log('logged');
-                self.props.auth(true, data.session.user);
-            }, (VK.access.FRIENDS | VK.access.AUDIO | VK.access.GROUPS));
+                VK.Api.call('photos.get', {owner_id: data.session.user.id, album_id: 'profile'}, function(r){
+                    var profilePic = r.response[r.response.length-1]['src_small'];
+                    //authentication state change call
+                    self.props.auth(true, data.session.user, profilePic);
+                });
+            }, (VK.access.FRIENDS | VK.access.AUDIO | VK.access.GROUPS | VK.access.PHOTOS));
         }else{
             VK.Auth.logout(function(){
                 self.props.auth(false);
             });
         }
-
         e.preventDefault();
+    },
+    componentDidMount: function(){
+        var self = this;
+        VK.Auth.getLoginStatus(function(data){
+            console.log(data);
+            if(data.session){
+                //setting user object in session
+                self.handleClick({preventDefault:function(){}});
+            }else{
+                console.log('not logged');
+            }
+        });
     },
     render: function() {
         return <header className="bg-white-only header header-md navbar navbar-fixed-top-xs">
@@ -92,7 +106,7 @@ export const Login = React.createClass({
                     <li className="dropdown">
                         <a href="#" className="dropdown-toggle bg clear" data-toggle="dropdown">
               <span className="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="images/a0.png" alt="..."/>
+                <img src={this.props.loggedInUserPhotoSrc} alt="..."/>
               </span>
               {/*{this.props.loggedInUser.get('first_name')+' '+this.props.loggedInUser.get('last_name')}*/}
               {this.props.authenticated? this.props.loggedInUser.get('first_name')+' '+this.props.loggedInUser.get('last_name'):'Login'}
@@ -133,7 +147,8 @@ function mapStateToProps(state) {
     return {
         pair: state.get('pair'),
         authenticated: state.get('authenticated'),
-        loggedInUser: state.get('loggedInUser')
+        loggedInUser: state.get('loggedInUser'),
+        loggedInUserPhotoSrc: state.get('loggedInUserPhotoSrc')
     };
 }
 

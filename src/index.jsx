@@ -25,6 +25,7 @@ store.dispatch({
             chosenSongIndex: -1,
             chosenSongName: '',
             loggedInUser: null,
+            loggedInUserPhotoSrc: '#',
             autoPlay: false,
             chosenSongObj: null,
             tabListActive: '#friends'
