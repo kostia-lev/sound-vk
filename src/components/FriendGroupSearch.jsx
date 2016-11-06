@@ -1,10 +1,17 @@
 import React from 'react';
 import * as actionCreators from '../action_creators';
 import {connect} from 'react-redux';
+import {debounce} from 'throttle-debounce';
 
 export const FriendGroupSearch = React.createClass({
-    typeSearch: function(e){
-        this.props.friendGroupSearchOntype(e.target.value);
+    componentWillMount() {
+        this.typeSearch = debounce(500, this.typeSearch);
+    },
+    printChange(e) {
+        this.typeSearch(e.target.value);
+    },
+    typeSearch: function(val){
+        this.props.friendGroupSearchOntype(val);
     },
     render: function() {
         return <form className="" role="search">
@@ -13,7 +20,7 @@ export const FriendGroupSearch = React.createClass({
                         <span className="input-group-btn">
                           <button type="submit" className="btn btn-sm bg-empty text-muted btn-icon"><i className="fa fa-search"></i></button>
                         </span>
-                    <input onChange={this.typeSearch} type="text"
+                    <input onKeyUp={this.printChange} type="text"
                            className="form-control input-sm text-white bg-empty b-b b-dark no-border" placeholder="Search members"/>
                 </div>
             </div>
