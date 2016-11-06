@@ -645,7 +645,7 @@ export const Voting = React.createClass({
                                         </div>
                                     </section>
                                     <footer className="footer footer-md bg-black">
-                                        <FriendGroupSearch onType={this.onType}/>
+                                        <FriendGroupSearch/>
                                     </footer>
                                 </section>
                             </aside>
