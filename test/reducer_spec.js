@@ -10,17 +10,23 @@ describe('reducer', () => {
     const initialState = Map();
     const action = {
         type: 'SET_STATE',
-        state: Map({
-                pair: List.of('Trainspotting', '28 Days Later'),
-                tally: Map({Trainspotting: 1})})
+        state: Map(
+             {
+                chosenSongId: 1,
+                chosenSongMp3: 'http://test',
+                chosenSongIndex: 1,
+                chosenSongName: 'name'
+
+        })
     };
     const nextState = reducer(initialState, action);
 
     expect(nextState).to.equal(fromJS({
-        vote: {
-            pair: ['Trainspotting', '28 Days Later'],
-            tally: {Trainspotting: 1}
-        }
+        chosenSongId: 1,
+        chosenSongMp3: 'http://test',
+        chosenSongIndex: 1,
+        chosenSongName: 'name'
+
     }));
 });
 

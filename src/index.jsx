@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {VotingContainer} from './components/Voting';
+import {MainContainer} from './components/Main';
 import {Router, Route, hashHistory, browserHistory} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer'
-import App from './components/App';
+
 VK.init({
     apiId: 5641844
 });
@@ -13,7 +13,6 @@ const store = createStore(reducer);
 store.dispatch({
     type: 'SET_STATE',
     state: {
-            pair: [{title:'Sunshine'}, {title:'28 Days Later'}, {title:'Trainspotting'}],
             authenticated: false,
             friends: [],
             groups: [],
@@ -36,7 +35,7 @@ store.dispatch({
 ReactDOM.render(
     <Provider store={store}>
     <Router history={browserHistory}>
-        <Route path="/" component={VotingContainer} />
+        <Route path="/" component={MainContainer} />
     </Router>
     </Provider>,
     document.getElementById('app')

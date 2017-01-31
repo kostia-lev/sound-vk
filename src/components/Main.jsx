@@ -10,7 +10,7 @@ import {FriendGroupSearchContainer as FriendGroupSearch} from './FriendGroupSear
 var jsmediatags = window.jsmediatags;
 
 
-export const Voting = React.createClass({
+export const Main = React.createClass({
     songEnded: function(e){
         console.log(parseInt(this.props.chosenSongIndex)+1);
         //play next song in playlist array
@@ -680,4 +680,4 @@ function mapStateToProps(state) {
     };
 }
 
-export const VotingContainer = connect(mapStateToProps, actionCreators)(Voting);
+export const MainContainer = connect(mapStateToProps, actionCreators)(Main);
